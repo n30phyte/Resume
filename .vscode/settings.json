@@ -2,14 +2,17 @@
   "latex-workshop.latex.recipes": [
     {
       "name": "resume",
-      "tools": ["pdflatex"]
+      "tools": ["latexmk"]
     }
   ],
   "latex-workshop.latex.tools": [
     {
-      "name": "pdflatex",
-      "command": "pdflatex",
+      "name": "latexmk",
+      "command": "latexmk",
       "args": [
+        "-lualatex",
+        "-interaction=nonstopmode",
+        "-file-line-error",
         "-synctex=1",
         "resume.tex"
       ],
