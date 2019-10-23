@@ -1,0 +1,18 @@
+{
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "resume",
+      "tools": ["pdflatex"]
+    }
+  ],
+  "latex-workshop.latex.tools": [
+    {
+      "name": "pdflatex",
+      "command": "pdflatex",
+      "args": [
+        "-synctex=1",
+        "resume.tex"
+      ],
+    }
+  ]
+}

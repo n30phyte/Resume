@@ -1,0 +1,86 @@
+\documentclass[10pt,letterpaper,ragged2e]{altacv}
+
+% Change the page layout if you need to
+\geometry{left=0.7cm,right=9.5cm,marginparwidth=8.3cm,marginparsep=0.5cm,top=0.9cm,bottom=0.5cm}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[default]{lato}
+
+\usepackage{hyperref}
+
+\definecolor{Black}{HTML}{000000}
+\definecolor{SlateGrey}{HTML}{2E2E2E}
+\colorlet{heading}{Black}
+\colorlet{accent}{Black}
+\colorlet{emphasis}{SlateGrey}
+\colorlet{body}{SlateGrey}
+
+\renewcommand{\itemmarker}{{\small\faAngleRight}}
+\renewcommand{\ratingmarker}{\faCircle}
+
+\begin{document}
+\name{Michael Kwok}
+\personalinfo{
+  \email{\href{mailto:mkwok1@ualberta.ca}{mkwok1@ualberta.ca}}
+  \github{\href{https://github.com/n30phyte}{n30phyte}}
+  \linkedin{\href{https://www.linkedin.com/in/michael-kwok-2b82a8148/}{Michael Kwok}}
+  \location{Edmonton, AB\kern 1em}
+  \phone{+1 587 937 5980\kern 1em}
+}
+
+\begin{fullwidth}
+  \makecvheader
+\end{fullwidth}
+
+\AtBeginEnvironment{itemize}{\small}
+
+
+% PROJECTS
+\cvsection[sidebar]{Education}
+\cvevent{BSc. Computer Engineering, 2nd Year}{University of Alberta}{September 2017 -- May 2022}{Edmonton, AB, Canada}
+
+\cvsection{Projects}
+\cvproject{KaiChiNDS}{Ongoing Project}{\href{https://github.com/n30phyte/KaiChiNDS}{n30phyte/KaiChiNDS}}
+\begin{itemize}
+  \item Emulator for Nintendo DS and Gameboy Advance consoles, with an emphasis on experimentation and learning.
+  \item An ongoing research project made in collaboration with Cynthia Li.
+  \item Used as a scratchpad to learn how to write optimized, clean code in C++, utilization of STL to increase code reuse, application of Computer Architecture courses and graphics programming.
+  \item \textbf{Technologies:} C++, SFML, OpenGL, CMake,
+\end{itemize}
+\divider\small
+
+\cvproject{Klutter}{Ongoing Project}{\href{https://github.com/n30phyte/Klutter}{n30phyte/Klutter}}
+\begin{itemize}
+  \item Inspired by \href{www.supercook.com}{SuperCook}, an app to help planning meals over the week easier.
+  \item Written in Dart as a project to introduce myself to mobile app development.
+  \item \textbf{Technologies:} Flutter, Dart
+\end{itemize}
+\divider\small
+
+\cvproject{github.io Webpage}{}{\href{https://github.com/n30phyte/n30phyte.github.io}{n30phyte.github.io}}
+\begin{itemize}
+  \item A playground for learning web technologies for single page applications.
+  \item \textbf{Technologies:} Vue, HTML, CSS, JavaScript
+\end{itemize}
+\divider\small
+
+\cvproject{AI Pong}{November 2018}{\href{https://github.com/n30phyte/HackEDBeta2018}{n30phyte/HackEDBeta2018}}
+\begin{itemize}
+  \item First large scale team project in C++, using SFML to write a Pong clone to be controlled by a Python AI agent.
+  \item Written during HackED Beta 2018, a hackathon hosted by the University of Alberta Computer Engineering Club.
+  \item \textbf{Technologies:} C++, SFML, Python, Keras, TensorFlow
+\end{itemize}
+\divider\small
+
+\cvproject{SpotifyThing}{January 2018}{\href{https://github.com/n30phyte/SpotifyThing}{n30phyte/SpotifyThing}}
+\begin{itemize}
+  \item Created a small script to automate the monotonous and repetitive task of turning Spotify playlists to CSV files.
+  \item \textbf{Technologies:} C\#, Spotify Web API
+\end{itemize}
+\divider\small
+\clearpage
+\nocite{*}
+\end{document}
+
+
