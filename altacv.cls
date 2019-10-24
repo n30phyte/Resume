@@ -180,7 +180,7 @@
   \ifstrequal{#2}{}{}{
   \textbf{\color{accent}#2}\par
   \smallskip}
-  \ifstrequal{#3}{}{}{{\small\makebox[0.5\linewidth][l]{\faCalendar\hspace{0.5em}#3}}}%
+  \ifstrequal{#3}{}{}{{\small\makebox[0.5\linewidth][l]{\faCalendarO\hspace{0.5em}#3}}}%
   \ifstrequal{#4}{}{}{{\small\makebox[0.5\linewidth][l]{\faMapMarker\hspace{0.5em}#4}}}\par
   \medskip\normalsize
 }
@@ -188,7 +188,7 @@
 \newcommand{\cvproject}[3]{%
   {\large\color{emphasis}#1\par}
   \smallskip\normalsize
-  \ifstrequal{#2}{}{}{{\small\makebox[0.5\linewidth][l]{\faCalendar\hspace{0.5em}#2}}}%
+  \ifstrequal{#2}{}{}{{\small\makebox[0.5\linewidth][l]{\faCalendarO\hspace{0.5em}#2}}}%
   \ifstrequal{#3}{}{}{{\small\makebox[0.5\linewidth][l]{\faGithub\hspace{0.5em}#3}}}\par
   \medskip\normalsize
 }
