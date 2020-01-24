@@ -26,10 +26,6 @@
 \RequirePackage{ifxetex,ifluatex}
 \RequirePackage{scrlfile}
 
-% Add "Made in LaTeX" fooder
-\RequirePackage{fancyhdr}
-\rfoot{Made in \LaTeX}
-
 %% v1.1.5: added for convenience
 \newif\ifxetexorluatex
 \ifxetex
