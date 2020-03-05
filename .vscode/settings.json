@@ -1,21 +1,26 @@
 {
   "latex-workshop.latex.recipes": [
     {
-      "name": "resume",
-      "tools": ["latexmk"]
+      "name": "Build resume",
+      "tools": [
+        "Build"
+      ]
+    },
+    {
+      "name": "Clean resume",
+      "tools": [
+        "Clean"
+      ]
     }
   ],
   "latex-workshop.latex.tools": [
     {
-      "name": "latexmk",
-      "command": "latexmk",
-      "args": [
-        "-lualatex",
-        "-interaction=nonstopmode",
-        "-file-line-error",
-        "-synctex=1",
-        "resume.tex"
-      ],
+      "name": "Build",
+      "command": "make"
+    },
+    {
+      "name": "Clean",
+      "command": "make clean"
     }
   ]
 }
