@@ -1,12 +1,24 @@
 %%%%%%%%%%%%%%%%%
-% Based off Konrad Stanski's latex resume https://github.com/KonradStanski/latexResume
-% Which is based off AltaCV by LianTze Lim https://github.com/liantze/AltaCV
-%%%%%%%%%%%%%%%%
+% This is altacv.cls (v1.3.2, 17 May 2020) written by
+% LianTze Lim (liantze@gmail.com).
+%
+%% It may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2003/12/01 or later.
+%%
+%%
+% Contributions:
+% - https://github.com/akreuzer Added ragged2e option (5 Nov 2018)
+% - https://github.com/stefanogermano Fixed bad boxes and undefined font shape (July 2018)
+% - https://github.com/foohyfooh Fixed blank spaces in \cvevent and bad link in README.md (June 2018)
 
+%%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-%% v1.4: Detect TL2018 to handle accented characters in class information
-\@ifl@t@r\fmtversion{2018/04/01}{\UseRawInputEncoding}{}
-\ProvidesClass{altacv}[2018/12/01 AltaCV v1.1.5, yet another alternative class for a résumé/curriculum vitae.]
+\ProvidesClass{altacv}[2020/05/17 AltaCV v1.3.2, yet another alternative class for a resume/curriculum vitae.]
 
 %% v1.1: Optionally load academicons
 \newif\if@academicons
@@ -17,14 +29,20 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{extarticle}}
 \newif\if@raggedtwoe
 \DeclareOption{ragged2e}{\@raggedtwoetrue}
+%% v1.3: load hyperref for clickable hyperlinks
+\newif\if@withhyper
+\DeclareOption{withhyper}{\@withhypertrue}
 \ProcessOptions\relax
 
-\LoadClass{extarticle}
-
+\LoadClass{article}
+%% v1.3.2 Hopefully this helps make the PDF
+%% file more 'friendly' with copy-paste etc
+\RequirePackage[a-1b]{pdfx}
 \RequirePackage[margin=2cm]{geometry}
-\RequirePackage{fontawesome}
+\RequirePackage[fixed]{fontawesome5}
 \RequirePackage{ifxetex,ifluatex}
 \RequirePackage{scrlfile}
+\RequirePackage{xparse}
 
 %% v1.1.5: added for convenience
 \newif\ifxetexorluatex
@@ -36,6 +54,22 @@
   \else
     \xetexorluatexfalse
   \fi
+\fi
+
+\ifxetexorluatex
+  \RequirePackage{fontspec}
+\else
+  %% v1.3.2 attempts to make ligatures
+  %% copy-paste as normal characters
+  \RequirePackage{cmap}
+  \RequirePackage[utf8]{inputenc}
+  \RequirePackage[T1]{fontenc}
+  \input{glyphtounicode}
+  \pdfglyphtounicode{f_f}{FB00}
+  \pdfglyphtounicode{f_f_i}{FB03}
+  \pdfglyphtounicode{f_f_l}{FB04}
+  \pdfglyphtounicode{f_i}{FB01}
+  \pdfgentounicode=1
 \fi
 
 %% v1.1: Optionally load academicons
@@ -80,20 +114,32 @@
   \RequirePackage[newcommands]{ragged2e}
 \fi
 
+\if@withhyper
+  \AtBeginDocument{%
+    \RequirePackage{hyperref}
+    \hypersetup{hidelinks}
+    \urlstyle{same}
+  }
+\fi
+
 \RequirePackage{xcolor}
 
 \colorlet{accent}{blue!70!black}
-\colorlet{heading}{black}
 \colorlet{emphasis}{black}
+\colorlet{heading}{black}
+\colorlet{headingrule}{black}
+\colorlet{subheading}{emphasis}
 \colorlet{body}{black!80!white}
+\colorlet{name}{heading}
+\colorlet{tagline}{accent}
 \newcommand{\itemmarker}{{\small\textbullet}}
 \newcommand{\ratingmarker}{\faCircle}
 
 \RequirePackage{tikz}
 \usetikzlibrary{arrows}
 \RequirePackage[skins]{tcolorbox}
-\RequirePackage{enumitem}
-\setlist{leftmargin=*,labelsep=0.5em,nosep,itemsep=0.25\baselineskip,after=\vskip0.25\baselineskip}
+\RequirePackage[inline]{enumitem}
+\setlist{leftmargin=*,labelsep=0.5em,nosep,itemsep=0.25\baselineskip,after=\vspace{0.25\baselineskip}}
 \setlist[itemize]{label=\itemmarker}
 \RequirePackage{graphicx}
 \RequirePackage{etoolbox}
@@ -105,53 +151,129 @@
 \setlength{\parindent}{0pt}
 \newcommand{\divider}{\textcolor{body!30}{\hdashrule{\linewidth}{0.6pt}{0.5ex}}\medskip}
 
-\newenvironment{fullwidth}{
+\newenvironment{fullwidth}{%
   \begin{adjustwidth}{}{\dimexpr-\marginparwidth-\marginparsep\relax}}
   {\end{adjustwidth}}
 
-\newcommand{\emailsymbol}{\faEnvelopeO}
-\newcommand{\phonesymbol}{\faPhone}
-\newcommand{\homepagesymbol}{\faChain}
-\newcommand{\locationsymbol}{\faMapMarker}
-\newcommand{\linkedinsymbol}{\faLinkedin}
-\newcommand{\twittersymbol}{\faTwitter}
-\newcommand{\githubsymbol}{\faGithub}
-\newcommand{\mailsymbol}{\faEnvelope}
+%% v1.3.1 \detokenize will break UTF-8 in pdflatex
+%% Using alternative from https://tex.stackexchange.com/a/530911/226
+\newcommand{\utffriendlydetokenize}[1]{%
+\scantokens{%
+  \catcode`\_=12%
+%   \catcode`\^=12%
+%   \catcode`\{=12%
+%   \catcode`\}=12%
+  \catcode`\&=12%
+  \catcode`\$=12%
+  \catcode`\#=12%
+  \catcode`\~=12%
+%   \catcode`\\=12%
+  {#1}%
+}%
+}
+%% v1.3: Incorporating hyperlinks
+%% v1.3.1: using \unfriendlydetokenize to avoid
+%% breaking unicode
+\ExplSyntaxOn
+\NewDocumentCommand{\printinfo}{m m o}{%
+  \IfNoValueTF{#3}{%
+    \mbox{\textcolor{accent}{\normalfont #1}~\utffriendlydetokenize{#2}\hspace{2em}}%
+  }{%
+     \if@withhyper%
+      \mbox{\textcolor{accent}{\normalfont #1}~
+      \href{#3}{\utffriendlydetokenize{#2}}\hspace{2em}}
+     \else%
+       \ClassWarning{Please specify [withhyper] option to enable hyperlinks. Printing out full hyperlink prefix #1 for now.}%
+      \mbox{\textcolor{accent}{\normalfont #1}~{\utffriendlydetokenize{#3#2}}\hspace{2em}}%
+     \fi%
+  }%
+}%
 
-\newcommand{\printinfo}[2]{\mbox{\textcolor{accent}{\normalfont #1}\hspace{0.5em}#2\hspace{2em}}}
+%% v1.3: Exploring convenient creation of fields
+\NewDocumentCommand{\NewInfoField}{m m o}{%
+  \IfNoValueF{#3}{\csdef{#1 hyperprefix}{#3}}%
+  \csdef{#1 symbol}{#2}%
+  \csdef{#1}##1{%
+    \if@withhyper
+      \IfNoValueTF {#3}
+        {\printinfo{\csuse{#1 symbol}}{##1}}%
+        {\printinfo{\csuse{#1 symbol}}{##1}[\csuse{#1 hyperprefix}##1]}%
+    \else
+      \printinfo{\csuse{#1 symbol}}{##1}%
+    \fi%
+  }
+}
+\ExplSyntaxOff
 
 \newcommand{\name}[1]{\def\@name{#1}}
-\newcommand{\tagline}[1]{\def\@tagline{#1}}
-\newcommand{\photo}[2]{\def\@photo{#2}\def\@photodiameter{#1}}
-\newcommand{\email}[1]{\printinfo{\emailsymbol}{#1}}
-\newcommand{\mailaddress}[1]{\printinfo{\mailsymbol}{#1}}
-\newcommand{\phone}[1]{\printinfo{\phonesymbol}{#1}}
-\newcommand{\homepage}[1]{\printinfo{\homepagesymbol}{#1}}
-\newcommand{\twitter}[1]{\printinfo{\twittersymbol}{#1}}
-\newcommand{\linkedin}[1]{\printinfo{\linkedinsymbol}{#1}}
-\newcommand{\github}[1]{\printinfo{\githubsymbol}{#1}}
-\newcommand{\location}[1]{\printinfo{\locationsymbol}{#1}}
-
 \newcommand{\personalinfo}[1]{\def\@personalinfo{#1}}
+\NewInfoField{email}{\faEnvelope[regular]}[mailto:]
+\NewInfoField{mailaddress}{\faEnvelope}
+\NewInfoField{phone}{\faPhone}
+\NewInfoField{homepage}{\faGlobe}[https://]
+\NewInfoField{twitter}{\faTwitter}[https://twitter.com/]
+\NewInfoField{linkedin}{\faLinkedinIn}[https://linkedin.com/in/]
+\NewInfoField{github}{\faGithub}[https://github.com/]
+\NewInfoField{orcid}{\aiOrcid}[https://orcid.org/]
+\NewInfoField{location}{\faMapMarker*}
+
+% v1.2: Support for multiple photos
+\newlength{\altacv@photos@width}
+\newlength{\altacv@photo@diam@left}
+\newlength{\altacv@photo@diam@right}
+\def\altacv@left@photos{}
+\def\altacv@right@photos{}
+
+\newcommand{\@makeaphoto}[2]{%
+  \begin{minipage}{#1}%
+    \if@normalphoto
+      \includegraphics[width=\linewidth]{#2}
+    \else
+      \tikz\path[fill overzoom image={#2}]circle[radius=0.5\linewidth];
+    \fi%
+  \end{minipage}%
+}
+
+\newcommand{\altacv@add@photo@left}[1]{%
+  \appto{\altacv@left@photos}{%
+    \@makeaphoto{\altacv@photo@diam@left}{#1}\hspace{1ex}%
+  }%
+  \addtolength{\altacv@photos@width}{\altacv@photo@diam@left}%
+  \addtolength{\altacv@photos@width}{1ex}%
+}
+\newcommand{\altacv@add@photo@right}[1]{%
+  \appto{\altacv@right@photos}{%
+    \@makeaphoto{\altacv@photo@diam@right}{#1}\hspace{1ex}%
+  }%
+  \addtolength{\altacv@photos@width}{\altacv@photo@diam@right}%
+  \addtolength{\altacv@photos@width}{1ex}%
+}
+\newcommand{\photoL}[2]{%
+  \setlength{\altacv@photo@diam@left}{#1}%
+  \forcsvlist{\altacv@add@photo@left}{#2}%
+}
+\newcommand{\photoR}[2]{%
+  \setlength{\altacv@photo@diam@right}{#1}%
+  \forcsvlist{\altacv@add@photo@right}{#2}%
+}
+\let\photo\photoR
+
+\newcommand{\namefont}{\Huge\bfseries}
+\newcommand{\taglinefont}{\large\bfseries}
+\newcommand{\personalinfofont}{\footnotesize\bfseries}
+\newcommand{\cvsectionfont}{\LARGE\bfseries}
+\newcommand{\cvsubsectionfont}{\large\bfseries}
 
 \newcommand{\makecvheader}{%
   \begingroup
-    \ifdef{\@photodiameter}{\begin{minipage}{\dimexpr\linewidth-\@photodiameter-2em}}{}%
-    \raggedright\color{emphasis}%
-    {\Huge\bfseries\MakeUppercase{\@name}\par}
+    \altacv@left@photos\hfill%
+    \begin{minipage}{\dimexpr\linewidth-\altacv@photos@width}%
+    \raggedright%
+    {\namefont\color{name}\MakeUppercase{\@name}\par}
     \medskip
-    % {\large\bfseries\color{accent}\@tagline\par}
-    % \medskip
-    {\footnotesize\bfseries\@personalinfo\par}
-    \ifdef{\@photodiameter}{%
+    {\personalinfofont\@personalinfo\par}
     \end{minipage}\hfill%
-    \begin{minipage}{\@photodiameter}
-    \if@normalphoto
-      \includegraphics[width=\linewidth]{\@photo}
-    \else
-      \tikz\path[fill overzoom image={\@photo}]circle[radius=0.5\linewidth];
-    \fi%
-    \end{minipage}\par}{}%
+    \altacv@right@photos\par%
   \endgroup\medskip
 }
 
@@ -160,13 +282,13 @@
 \newcommand{\cvsection}[2][]{%
   \bigskip%
   \ifstrequal{#1}{}{}{\marginpar{\vspace*{\dimexpr1pt-\baselineskip}\raggedright\input{#1}}}%
-  {\color{heading}\LARGE\bfseries\MakeUppercase{#2}}\\[-1ex]%
-  {\color{heading}\rule{\linewidth}{2pt}\par}\medskip
+  {\color{heading}\cvsectionfont\MakeUppercase{#2}}\\[-1ex]%
+  {\color{headingrule}\rule{\linewidth}{2pt}\par}\medskip
 }
 
 \newcommand{\cvsubsection}[1]{%
   \smallskip%
-  {\color{emphasis}\large\bfseries{#1}\par}\medskip
+  {\color{subheading}\cvsubsectionfont{#1}\par}\medskip
 }
 
 % v1.1.4: fixes inconsistent font size
@@ -176,15 +298,16 @@
   \ifstrequal{#2}{}{}{
   \textbf{\color{accent}#2}\par
   \smallskip}
-  \ifstrequal{#3}{}{}{{\small\makebox[0.5\linewidth][l]{\faCalendarO\hspace{0.5em}#3}}}%
-  \ifstrequal{#4}{}{}{{\small\makebox[0.5\linewidth][l]{\faMapMarker\hspace{0.5em}#4}}}\par
+  \ifstrequal{#3}{}{}{{\small\makebox[0.5\linewidth][l]{\faCalendar[regular]~#3}}}%
+  \ifstrequal{#4}{}{}{{\small\makebox[0.5\linewidth][l]{\faMapMarker*~#4}}}\par
   \medskip\normalsize
 }
+
 
 \newcommand{\cvproject}[3]{%
   {\large\color{emphasis}#1\par}
   \smallskip\normalsize
-  \ifstrequal{#2}{}{}{{\small\makebox[0.5\linewidth][l]{\faCalendarO\hspace{0.5em}#2}}}%
+  \ifstrequal{#2}{}{}{{\small\makebox[0.5\linewidth][l]{\faCalendar[regular]\hspace{0.5em}#2}}}%
   \ifstrequal{#3}{}{}{{\small\makebox[0.5\linewidth][l]{\faGithub\hspace{0.5em}#3}}}\par
   \medskip\normalsize
 }
@@ -265,14 +388,24 @@
 \newcommand{\cvref}[3]{%
   \smallskip
   \textcolor{emphasis}{\textbf{#1}}\par
-  \begin{description}[font=\color{accent},style=multiline,leftmargin=1.35em]
-  \item[\normalfont\emailsymbol] #2
-  \item[\small\normalfont\mailsymbol] #3
+  \begin{description}[font=\color{accent},style=multiline,leftmargin=1.35em,align=left]
+  \item[\small\normalfont\emailsymbol] #2
+  \item[\small\normalfont\mailaddresssymbol] #3
   \end{description}
 %   \medskip
 }
 
 \newenvironment{cvcolumn}[1]{\begin{minipage}[t]{#1}\raggedright}{\end{minipage}}
+
+\RequirePackage[backend=biber,style=authoryear,sorting=ydnt]{biblatex}
+%% For removing numbering entirely when using a numeric style
+% \setlength{\bibhang}{1em}
+% \DeclareFieldFormat{labelnumberwidth}{\makebox[\bibhang][l]{\itemmarker}}
+% \setlength{\biblabelsep}{0pt}
+\defbibheading{pubtype}{\cvsubsection{#1}}
+\renewcommand{\bibsetup}{\vspace*{-\baselineskip}}
+\AtEveryBibitem{\makebox[\bibhang][l]{\itemmarker}}
+\setlength{\bibitemsep}{0.25\baselineskip}
 
 % v1.1.2: make it easier to add a sidebar aligned with top of next page
 \RequirePackage{afterpage}
@@ -283,7 +416,7 @@
 \newcommand{\addnextpagesidebar}[2][]{\afterpage{\addsidebar[#1]{#2}}}
 
 \AtBeginDocument{%
-  \pagestyle{plain}
+  \pagestyle{empty}
   \color{body}
   \raggedright
 }

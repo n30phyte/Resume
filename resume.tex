@@ -1,13 +1,10 @@
-\documentclass[10pt,letterpaper,ragged2e,academicons]{altacv}
+\documentclass[10pt,a4paper,ragged2e,academicons,withhyper]{altacv}
 
-% Change the page layout if you need to
-\geometry{left=0.7cm,right=9.5cm,marginparwidth=8.3cm,marginparsep=0.5cm,top=0.9cm,bottom=0.5cm}
+\geometry{left=1.25cm,right=1.25cm,top=1.5cm,bottom=1.5cm,columnsep=1.2cm}
 
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[default]{lato}
+\usepackage{paracol}
 
-\usepackage[hidelinks]{hyperref}
+\setmainfont{Lato}
 
 \definecolor{Black}{HTML}{000000}
 \definecolor{SlateGrey}{HTML}{2E2E2E}
@@ -22,61 +19,115 @@
 \begin{document}
 \name{Michael Kwok}
 \personalinfo{
-  \email{\href{mailto:mkwok1@ualberta.ca}{mkwok1@ualberta.ca}}
-  \github{\href{https://github.com/n30phyte}{n30phyte}}
-  \linkedin{\href{https://www.linkedin.com/in/michael-kwok-2b82a8148/}{Michael Kwok}}
+  \email{mkwok1@ualberta.ca}
+  \github{n30phyte}
+  \linkedin{michael-kwok-2b82a8148}
   \location{Edmonton, AB\kern 1em}
-  \phone{+1 587 937 5980\kern 1em}
+  \phone{587 937 5980\kern 1em}
 }
 
-\begin{fullwidth}
-  \makecvheader
-\end{fullwidth}
+\makecvheader
 
 \AtBeginEnvironment{itemize}{\small}
 
+\columnratio{0.6}
 
-% PROJECTS
-\cvsection[sidebar]{Education}
-\cvevent{BSc. Computer Engineering}{University of Alberta}{September 2017}{Edmonton, AB, Canada}
+\begin{paracol}{2}
 
-\cvsection{Projects}
-\cvproject{BudgetPacman}{19 Jan 2020}{\href{https://github.com/loravocado/BudgetPacman}{loravocado/BudgetPacman}}
-\begin{itemize}
-  \item A project for HackED 2020 with the goal of making a version of tag that used a phone and GPS locations.
-  \item Implemented a server using Socket.io and Typescript, learning both technologies overnight.
-  \item Won best use of Google Cloud Platform APIs.
-  \item \textbf{Technologies:} React Native, Typescript, JavaScript
-\end{itemize}
-\divider\small
+  % PROJECTS
+  \cvsection{Education}
+  \cvevent{BSc. Computer Engineering}{University of Alberta}{September 2017}{Edmonton, AB, Canada}
 
+  \cvsection{Projects}
+  \cvproject{BudgetPacman}{19 Jan 2020}{\href{https://github.com/loravocado/BudgetPacman}{loravocado/BudgetPacman}}
+  \begin{itemize}
+    \item A project for HackED 2020 with the goal of making a version of tag that used a phone and GPS locations.
+    \item Implemented a server using Socket.io and Typescript, learning both technologies overnight.
+    \item Won best use of Google Cloud Platform APIs.
+    \item \textbf{Technologies:} React Native, Typescript, JavaScript
+  \end{itemize}
+  \divider\small
 
-\cvproject{github.io Webpage}{Ongoing Project}{\href{https://github.com/n30phyte/n30phyte.github.io}{n30phyte.github.io}}
-\begin{itemize}
-  \item A playground for learning web technologies for single page applications.
-  \item \textbf{Technologies:} Vue, HTML, CSS, JavaScript
-\end{itemize}
-\divider\small
+  \cvproject{github.io Webpage}{Ongoing Project}{\href{https://github.com/n30phyte/n30phyte.github.io}{n30phyte.github.io}}
+  \begin{itemize}
+    \item A playground for learning web technologies for single page applications.
+    \item \textbf{Technologies:} Vue, HTML, CSS, JavaScript
+  \end{itemize}
+  \divider\small
 
-\cvproject{AI Pong}{28 November 2018}{\href{https://github.com/n30phyte/HackEDBeta2018}{n30phyte/HackEDBeta2018}}
-\begin{itemize}
-  \item First large scale team project in C++, using SFML to write a Pong clone to be controlled by a Python AI agent.
-  \item Written during HackED Beta 2018, a hackathon hosted by the University of Alberta Computer Engineering Club.
-  \item Experienced becoming a leader for a small project group, 
-  \item \textbf{Technologies:} C++, SFML, Python, Keras, TensorFlow
-\end{itemize}
-\divider\small
+  \cvproject{AI Pong}{28 November 2018}{\href{https://github.com/n30phyte/HackEDBeta2018}{n30phyte/HackEDBeta2018}}
+  \begin{itemize}
+    \item First large scale team project in C++, using SFML to write a Pong clone to be controlled by a Python AI agent.
+    \item Written during HackED Beta 2018, a hackathon hosted by the University of Alberta Computer Engineering Club.
+    \item Experienced becoming a leader for a small project group,
+    \item \textbf{Technologies:} C++, SFML, Python, Keras, TensorFlow
+  \end{itemize}
+  \divider\small
 
-\cvproject{SpotifyThing}{2 January 2018}{\href{https://github.com/n30phyte/SpotifyThing}{n30phyte/SpotifyThing}}
-\begin{itemize}
-  \item Created a small script to automate the monotonous and repetitive task of turning Spotify playlists to CSV files.
-  \item Gained experience in using RESTful Services.
-  \item \textbf{Technologies:} C\#, Spotify Web API
-\end{itemize}
-\divider\small
+  \cvproject{SpotifyThing}{2 January 2018}{\href{https://github.com/n30phyte/SpotifyThing}{n30phyte/SpotifyThing}}
+  \begin{itemize}
+    \item Created a small script to automate the monotonous and repetitive task of turning Spotify playlists to CSV files.
+    \item Gained experience in using RESTful Services.
+    \item \textbf{Technologies:} C\#, Spotify Web API
+  \end{itemize}
+  \divider\small
 
-\clearpage
-\nocite{*}
+  \nocite{*}
+
+  \switchcolumn
+
+  \cvsection{Programming \newline Languages}
+
+  \cvskill{C++}{4}
+  \cvskill{Python}{4}
+  \cvskill{C\#}{4}
+  \cvskill{\LaTeX}{3}
+  \cvskill{Shell Scripting}{3}
+  \cvskill{JavaScript}{2}
+  \cvskill{TypeScript}{2}
+  \cvskill{Verilog}{1}
+  \cvskill{Matlab}{1}
+  \cvskill{VHDL}{1}
+
+  \cvsection{Technologies \& \newline Programs}
+
+  \cvtag{CMake}
+  \cvtag{Google Test}
+  \cvtag{Git}
+  \cvtag{Vue}
+  \cvtag{vcpkg}
+  \cvtag{SFML}
+  \cvtag{Flutter}
+  \cvtag{IntelliJ IDEs}
+  \cvtag{Wireshark}
+  \cvtag{Visual Studio}
+  \cvtag{Visual Studio Code}
+  \cvtag{Windows}
+  \cvtag{Linux}
+  \cvtag{Intel Quartus Prime}
+  \cvtag{Xilinx Vivado}
+
+  \cvsection{Volunteering}
+
+  \cvevent{VP Finance}{Indonesian Students' Association Edmonton \\ {\footnotesize PERMIKA Edmonton}}{January 2019 -- Present}{}
+  \begin{itemize}
+    \item Helped restart the chapter after 2 years of inactivity due to lack of manpower.
+    \item Manage finances and budgeting for events and fundraisers.
+    \item Successfully budgeted a fundraisers that allowed us to operate comfortably.
+    \item Secured funding in the form of grants and sponsorships that allowed our group to grow.
+  \end{itemize}
+  \divider\small
+
+  \cvevent{Software Team Member}{Autonomous Robotic Vehicle Project}{May 2018 -- December 2019}{}
+  \begin{itemize}
+    \item Increased productivity by writing scripts that help automate various repetitive tasks, interfacing with Google App APIs, GitHub’s API and simulation scripts for ROS in C++ and Python.
+    \item Improved test coverage for robot’s control systems by writing Google Test unit tests.
+          %  \item Currently spearheading a rewrite for the robot’s aging simulator to allow for more automated testing, improving simulator stability and reduce reliance on an external unmaintained codebase.
+    \item Updated old and undocumented code to fix issues and add features.
+  \end{itemize}
+  \divider\small
+
+\end{paracol}
+
 \end{document}
-
 
