@@ -1,7 +1,8 @@
-\documentclass[10pt,a4paper,ragged2e,academicons,withhyper]{altacv}
+\documentclass[10pt,a4paper,ragged2e,academicons]{altacv}
 
 \geometry{left=1.25cm,right=1.25cm,top=1.5cm,bottom=1.5cm,columnsep=1.2cm}
 
+\usepackage{nag}
 \usepackage{paracol}
 
 \setmainfont{Lato}
@@ -13,7 +14,7 @@
 \colorlet{emphasis}{SlateGrey}
 \colorlet{body}{SlateGrey}
 
-\renewcommand{\itemmarker}{{\small\faAngleRight}}
+\renewcommand{\itemmarker}{\small\faAngleRight}
 \renewcommand{\ratingmarker}{\faCircle}
 
 \begin{document}
@@ -22,13 +23,13 @@
   \email{mkwok1@ualberta.ca}
   \github{n30phyte}
   \linkedin{michael-kwok-2b82a8148}
-  \location{Edmonton, AB\kern 1em}
-  \phone{587 937 5980\kern 1em}
+  \location{Edmonton, Alberta}
+  \phone{587 937 5980}
 }
 
-\makecvheader
-
 \AtBeginEnvironment{itemize}{\small}
+
+\makecvheader
 
 \columnratio{0.6}
 
@@ -38,37 +39,42 @@
   \cvsection{Education}
   \cvevent{BSc. Computer Engineering}{University of Alberta}{September 2017}{Edmonton, AB, Canada}
 
+  \cvsection{Work Experience}
+  \cvevent{Contract App Developer}{AdMore Lighting Inc}{4 August 2020 -- 31 December 2020}{}
+  \begin{itemize}
+    \item Currently working as an App Developer and DevOps on an LED Lightbar Remote Control app.
+    \item Closed over 30 issue tickets within the first month.
+    \item First time using Dart and Flutter on a real app, getting up to speed in a week.
+    \item Currently rewriting portions of the app to improve modularity.
+    \item \textbf{Technologies:} Dart, Flutter, Firebase, Protobuf, Bluetooth Low Energy
+  \end{itemize}
+  \divider\small
+
   \cvsection{Projects}
-  \cvproject{BudgetPacman}{19 Jan 2020}{\href{https://github.com/loravocado/BudgetPacman}{loravocado/BudgetPacman}}
+  \cvproject{Rustracer}{15 Aug 2020 -- 16 Aug 2020}{\href{https://github.com/n30phyte/rustracer}{n30phyte/rustracer}}
+  \begin{itemize}
+    \item A simple raytracer written in Rust completed mostly within 24 hours with small optimizations over the following week.
+    \item It was a way to learn the language while trying something new and interesting.
+    \item Got to grips with using AMD uProf for profiling, Rayon for multithreading and Rust for general programming.
+    \item \textbf{Technologies:} Rust, Rayon
+  \end{itemize}
+  \divider\small
+
+  \cvproject{BudgetPacman (Hackathon Project)}{19 Jan 2020}{\href{https://github.com/loravocado/BudgetPacman}{loravocado/BudgetPacman}}
   \begin{itemize}
     \item A project for HackED 2020 with the goal of making a version of tag that used a phone and GPS locations.
     \item Implemented a server using Socket.io and Typescript, learning both technologies overnight.
-    \item Won best use of Google Cloud Platform APIs.
+    \item \textbf{Won:} Best Use of Google Cloud Platform APIs.
     \item \textbf{Technologies:} React Native, Typescript, JavaScript
   \end{itemize}
   \divider\small
 
-  \cvproject{github.io Webpage}{Ongoing Project}{\href{https://github.com/n30phyte/n30phyte.github.io}{n30phyte.github.io}}
+  \cvproject{AI Pong (Hackathon Project)}{28 November 2018}{\href{https://github.com/n30phyte/HackEDBeta2018}{n30phyte/HackEDBeta2018}}
   \begin{itemize}
-    \item A playground for learning web technologies for single page applications.
-    \item \textbf{Technologies:} Vue, HTML, CSS, JavaScript
-  \end{itemize}
-  \divider\small
-
-  \cvproject{AI Pong}{28 November 2018}{\href{https://github.com/n30phyte/HackEDBeta2018}{n30phyte/HackEDBeta2018}}
-  \begin{itemize}
-    \item First large scale team project in C++, using SFML to write a Pong clone to be controlled by a Python AI agent.
     \item Written during HackED Beta 2018, a hackathon hosted by the University of Alberta Computer Engineering Club.
-    \item Experienced becoming a leader for a small project group,
+    \item First non-toy program in C++, using SFML to write a Pong clone to be controlled by a Python AI agent.
+    \item Experienced becoming a leader for programming project.
     \item \textbf{Technologies:} C++, SFML, Python, Keras, TensorFlow
-  \end{itemize}
-  \divider\small
-
-  \cvproject{SpotifyThing}{2 January 2018}{\href{https://github.com/n30phyte/SpotifyThing}{n30phyte/SpotifyThing}}
-  \begin{itemize}
-    \item Created a small script to automate the monotonous and repetitive task of turning Spotify playlists to CSV files.
-    \item Gained experience in using RESTful Services.
-    \item \textbf{Technologies:} C\#, Spotify Web API
   \end{itemize}
   \divider\small
 
@@ -76,36 +82,38 @@
 
   \switchcolumn
 
-  \cvsection{Programming \newline Languages}
+  \cvsection{Technologies \& \newline Programming \newline Languages}
 
-  \cvskill{C++}{4}
-  \cvskill{Python}{4}
-  \cvskill{C\#}{4}
-  \cvskill{\LaTeX}{3}
-  \cvskill{Shell Scripting}{3}
-  \cvskill{JavaScript}{2}
-  \cvskill{TypeScript}{2}
-  \cvskill{Verilog}{1}
-  \cvskill{Matlab}{1}
-  \cvskill{VHDL}{1}
+  \cvsubsection{Proficient}
 
-  \cvsection{Technologies \& \newline Programs}
-
+  \cvtag{C}
+  \cvtag{C++}
+  \cvtag{Python}
+  \cvtag{C\#}
+  \cvtag{\LaTeX}
   \cvtag{CMake}
-  \cvtag{Google Test}
   \cvtag{Git}
-  \cvtag{Vue}
-  \cvtag{vcpkg}
-  \cvtag{SFML}
   \cvtag{Flutter}
-  \cvtag{IntelliJ IDEs}
-  \cvtag{Wireshark}
-  \cvtag{Visual Studio}
-  \cvtag{Visual Studio Code}
-  \cvtag{Windows}
-  \cvtag{Linux}
-  \cvtag{Intel Quartus Prime}
-  \cvtag{Xilinx Vivado}
+  \cvtag{Google Test}
+
+  \cvsubsection{Familiar}
+
+  \cvtag{Rust}
+  \cvtag{Shell Scripting}
+  \cvtag{JavaScript}
+  \cvtag{VHDL}
+  \cvtag{Verilog}
+  \cvtag{Matlab}
+  \cvtag{React}
+  \cvtag{SFML}
+  \cvtag{Firebase}
+  \cvtag{Ghidra}
+
+  \cvsubsection{Interests}
+  \begin{itemize}
+    \item Currently learning about systems-level programming and backend services.
+    \item Computer Graphics and Computer \newline Architecture are some things that I'd like to know more about.
+  \end{itemize}
 
   \cvsection{Volunteering}
 
@@ -122,11 +130,14 @@
   \begin{itemize}
     \item Increased productivity by writing scripts that help automate various repetitive tasks, interfacing with Google App APIs, GitHub’s API and simulation scripts for ROS in C++ and Python.
     \item Improved test coverage for robot’s control systems by writing Google Test unit tests.
+    \item Updated toolchain from 5 year old tools, improving build times and allowing our Computer Vision team to use modern libraries.
           %  \item Currently spearheading a rewrite for the robot’s aging simulator to allow for more automated testing, improving simulator stability and reduce reliance on an external unmaintained codebase.
     \item Updated old and undocumented code to fix issues and add features.
   \end{itemize}
   \divider\small
 
+  \vspace*{\fill}
+  \hfill\tiny{Made in \LaTeX}
 \end{paracol}
 
 \end{document}

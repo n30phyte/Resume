@@ -1,0 +1,8 @@
+Cool looking resume written in LaTeX, based on AltaCV[0]
+with some personal modifications.
+
+How to use:
+    'make' to build resume
+    'make spellcheck' to run aspell
+    'make format' to run resume through latexindent
+[0]https://github.com/liantze/AltaCV

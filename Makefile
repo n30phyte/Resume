@@ -1,14 +1,17 @@
 BUILD_FOLDER=build
-.PHONY: watch clean format
+.PHONY: clean format spellcheck
 
-all: format resume.pdf
+all: format clean resume.pdf
+
+resume.pdf:	resume.tex altacv.cls
+	latexmk -synctex=1 -lualatex -file-line-error -interaction=nonstopmode -halt-on-error -outdir=$(BUILD_FOLDER) resume.tex
+	@cp build/resume.pdf resume.pdf
 
 format: resume.tex
 	latexindent resume.tex -s
 
-resume.pdf:	resume.tex altacv.cls
-	latexmk -lualatex -outdir=$(BUILD_FOLDER) resume.tex
-	@cp build/resume.pdf resume.pdf
+spellcheck: resume.tex
+	aspell --lang=en --mode=tex check resume.tex
 
 clean:
 	@rm -rf $(BUILD_FOLDER)
