@@ -23,30 +23,32 @@
   \email{mkwok1@ualberta.ca}
   \github{n30phyte}
   \linkedin{michael-kwok-2b82a8148}
-  \location{Edmonton, Alberta}
   \phone{587 937 5980}
 }
 
 \AtBeginEnvironment{itemize}{\small}
 
-\makecvheader
-
+\makecvheader{}
 \columnratio{0.6}
-
 \begin{paracol}{2}
-
   % PROJECTS
   \cvsection{Education}
-  \cvevent{BSc. Computer Engineering}{University of Alberta}{September 2017}{Edmonton, AB, Canada}
+  \cvevent{BSc. Computer Engineering}{University of Alberta}{September 2017 -- May 2022}{Edmonton, AB, Canada}
 
   \cvsection{Work Experience}
+  \cvevent{Software Engineer}{Verdi Agriculture}{25 May 2021 -- 30 August 2021}{}
+  \begin{itemize}
+    \item \textbf{Technologies:} Javascript, Typescript, Jest, MongoDB
+  \end{itemize}
+  
+
   \cvevent{Contract App Developer}{AdMore Lighting Inc}{4 August 2020 -- 31 December 2020}{}
   \begin{itemize}
-    \item Worked part time as a developer for an app that controls motorcycle lightbars, including firmware updates and configuration over Bluetooth Low Energy.
-    \item Improved modularity by splitting up large widgets, and replacing redundant ones with built-ins.
-    \item Improved app performance by removing busy loops and using Dart async features.
-    \item App is currently awaiting approval on the Apple App Store.
-    \item Replaced unmantained BLE library with a modern one.
+    \item Developed a mobile app as an independent contractor, working closely with full time firmware developer.
+    \item Improve existing app's performance and maintainability.
+    \item Polish app enough to get released on mobile app stores.
+    \item Structure app to allow for automated testing with an external hardware jig in the future.
+    \item Fixed over 400 linter warnings, closed over 40 issues.
     \item \textbf{Technologies:} Dart, Flutter, Firebase, Protobuf, Bluetooth Low Energy
   \end{itemize}
   \divider\small
@@ -55,8 +57,7 @@
   \cvproject{Rustracer}{15 Aug 2020 -- 16 Aug 2020}{\href{https://github.com/n30phyte/rustracer}{n30phyte/rustracer}}
   \begin{itemize}
     \item A simple raytracer written in Rust completed mostly within 24 hours with small optimizations over the following week.
-    \item Was a vehicle to learn the language while doing something interesting.
-    \item Got to grips with using AMD uProf for profiling, Rayon for multithreading and Rust for general programming.
+    \item Got to grips with using Rust for general programming, Rayon for multithreading and AMD uProf for profiling.
     \item \textbf{Technologies:} Rust, Rayon
   \end{itemize}
   \divider\small
@@ -74,68 +75,55 @@
   \begin{itemize}
     \item Written during HackED Beta 2018, a hackathon hosted by the University of Alberta Computer Engineering Club.
     \item First non-toy program in C++, using SFML to write a Pong clone to be controlled by a Python AI agent.
-    \item Experienced becoming a leader for programming project.
     \item \textbf{Technologies:} C++, SFML, Python, Keras, TensorFlow
   \end{itemize}
   \divider\small
 
-  \nocite{*}
-
-  \switchcolumn
-
-  \cvsection{Technologies \& \newline Programming \newline Languages}
+  \switchcolumn{}
+  \cvsection{Technologies \&  \newline Programming \newline Languages}
 
   \cvsubsection{Proficient}
 
-  \cvtag{C++}
   \cvtag{Python}
+  \cvtag{Git}
   \cvtag{Java}
   \cvtag{C\#}
-  \cvtag{\LaTeX}
-  \cvtag{SQL}
+  \cvtag{LaTeX}
   \cvtag{CMake}
-  \cvtag{Git}
-  \cvtag{Flutter}
-  \cvtag{Google Test}
+  \cvtag{Dart}
+  \cvtag{C}
+  \cvtag{C++}
+  \cvtag{CUDA}
 
   \cvsubsection{Familiar}
 
-  \cvtag{MongoDB}
-  \cvtag{C}
+  \cvtag{SQL}
   \cvtag{Rust}
   \cvtag{JavaScript}
   \cvtag{VHDL}
   \cvtag{React}
   \cvtag{SFML}
+  \cvtag{MongoDB}
   \cvtag{Firebase}
   \cvtag{Ghidra}
 
-  \cvsubsection{Interests}
-  \begin{itemize}
-    \item Currently learning about systems programming and backend services.
-    \item Computer Graphics and Computer \newline Architecture are some things that I'd like to know more about.
-  \end{itemize}
-
-  \cvsection{Volunteering}
+  \cvsection{Extra-Curriculars}
 
   \cvevent{VP Finance}{Indonesian Students' Association Edmonton \\ {\footnotesize PERMIKA Edmonton}}{January 2019 -- December 2020}{}
   \begin{itemize}
-    \item Helped restart the chapter after 2 years of inactivity due to lack of manpower.
-    \item Manage finances and budgeting for events and fundraisers.
-    \item Successfully budgeted a fundraisers that allowed us to operate comfortably.
-    \item Secured funding in the form of grants and sponsorships that allowed our group to grow.
+    \item Revived the group after 2 years of inactivity due to lack of manpower.
+    \item Increased our revenue by 800 dollars within a year.
+    \item This funding allowed our group to hold more events, increasing engagement from 5 to 6 people per event to more than 20.
   \end{itemize}
   \divider\small
 
   \cvevent{Software Team Member}{Autonomous Robotic Vehicle Project}{May 2018 -- December 2019}{}
   \begin{itemize}
-    \item Increased productivity by writing scripts that help automate various repetitive tasks, interfacing with Google App APIs, GitHub’s API and simulation scripts for ROS in C++ and Python.
+    \item Reduce wasted time by writing scripts that help automate repetitive tasks, interfacing with Google App APIs, GitHub’s API and simulation scripts for ROS in C++ and Python.
     \item Improved test coverage for robot’s control systems by writing Google Test unit tests in C++.
-    \item Updated toolchain migrated code from 5 year old tools, improving build times and allowing the Computer Vision team to use modern libraries.
-    \item Updated legacy undocumented code in Mission Planning program to fix issues and add features.
+    \item Updated technology stack, improving build times and opening access to updated CUDA libraries, increasing performance by 5 times.
   \end{itemize}
   \divider\small
-
 \end{paracol}
 
 \end{document}

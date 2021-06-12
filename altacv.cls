@@ -258,11 +258,11 @@
 }
 \let\photo\photoR
 
-\newcommand{\namefont}{\Huge\bfseries}
-\newcommand{\taglinefont}{\large\bfseries}
+\newcommand{\namefont}{\huge\bfseries}
+\newcommand{\taglinefont}{\bfseries}
 \newcommand{\personalinfofont}{\footnotesize\bfseries}
-\newcommand{\cvsectionfont}{\LARGE\bfseries}
-\newcommand{\cvsubsectionfont}{\large\bfseries}
+\newcommand{\cvsectionfont}{\Large\bfseries}
+\newcommand{\cvsubsectionfont}{\bfseries}
 
 \newcommand{\makecvheader}{%
   \begingroup
