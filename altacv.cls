@@ -21,8 +21,6 @@
 \ProvidesClass{altacv}[2020/05/17 AltaCV v1.3.2, yet another alternative class for a resume/curriculum vitae.]
 
 %% v1.1: Optionally load academicons
-\newif\if@academicons
-\DeclareOption{academicons}{\@academiconstrue}
 %% v1.1.3: Choice of round/square photo
 \newif\if@normalphoto
 \DeclareOption{normalphoto}{\@normalphototrue}
@@ -37,7 +35,13 @@
 \LoadClass{article}
 %% v1.3.2 Hopefully this helps make the PDF
 %% file more 'friendly' with copy-paste etc
-\RequirePackage[a-1b]{pdfx}
+% \RequirePackage[a-1b]{pdfx}
+%% v1.3.3 Temporary fix for pdfx and biblatex incompatibility
+%% (Thanks to @badetitou for highlighting this issue)
+%% https://github.com/plk/biblatex/issues/1044
+%% Will be removed when fix is released in biblatex 3.16
+% \catcode30=12
+\RequirePackage{accsupp}
 \RequirePackage[margin=2cm]{geometry}
 \RequirePackage[fixed]{fontawesome5}
 \RequirePackage{ifxetex,ifluatex}
@@ -70,44 +74,6 @@
   \pdfglyphtounicode{f_f_l}{FB04}
   \pdfglyphtounicode{f_i}{FB01}
   \pdfgentounicode=1
-\fi
-
-%% v1.1: Optionally load academicons
-%% v1.1.5: Handle different versions of academicons
-\if@academicons
-  \ifxetexorluatex
-    \RequirePackage{fontspec}
-    %% academicons in TL2018 doesn't require
-    %% Academicons to be installed in OS fonts
-    %% so can be loaded directly
-    \@ifl@t@r\fmtversion{2018/04/01}{%
-      \RequirePackage{academicons}
-    }{%
-      % TL2017
-      \@ifl@t@r\fmtversion{2017/04/01}{%
-        \@ifpackagelater{academicons}{2018/03/01}{%
-          \RequirePackage{academicons}
-        }{%
-          \let\ori@newfontfamily\newfontfamily%
-          \renewcommand{\newfontfamily}[2]{}
-          \RequirePackage{academicons}
-          \let\newfontfamily\ori@newfontfamily
-          \newfontfamily{\AI}{academicons.ttf}
-        }
-      }{% TL2016 requires the package to be loaded before
-        % the version can be checked. Only added because
-        % Overleaf v1 still runs TL2016; will be removed
-        % when v1 is completely retired.
-          \let\ori@newfontfamily\newfontfamily%
-          \renewcommand{\newfontfamily}[2]{}
-          \RequirePackage{academicons}
-          \let\newfontfamily\ori@newfontfamily
-          \newfontfamily{\AI}{academicons.ttf}
-      }
-    }
-  \else
-    \ClassError{AltaCV}{academicons unsupported by latex or pdflatex. Please compile with xelatex or lualatex}{Please compile with xelatex or lualatex to use the academicons option}
-  \fi
 \fi
 
 \if@raggedtwoe
@@ -171,11 +137,15 @@
   {#1}%
 }%
 }
+
 %% v1.3: Incorporating hyperlinks
 %% v1.3.1: using \unfriendlydetokenize to avoid
 %% breaking unicode
+%% v1.6: Use accsupp so that when copying/pasting the icon from PDF to a text
+%%       file, the icon name is pasted
 \ExplSyntaxOn
 \NewDocumentCommand{\printinfo}{m m o}{%
+  \BeginAccSupp{method=escape,ActualText={#1:~#2}}
   \IfNoValueTF{#3}{%
     \mbox{\textcolor{accent}{\normalfont #1}~\utffriendlydetokenize{#2}\hspace{2em}}%
   }{%
@@ -187,21 +157,37 @@
       \mbox{\textcolor{accent}{\normalfont #1}~{\utffriendlydetokenize{#3#2}}\hspace{2em}}%
      \fi%
   }%
+  \EndAccSupp{}
 }%
 
 %% v1.3: Exploring convenient creation of fields
-\NewDocumentCommand{\NewInfoField}{m m o}{%
-  \IfNoValueF{#3}{\csdef{#1 hyperprefix}{#3}}%
-  \csdef{#1 symbol}{#2}%
-  \csdef{#1}##1{%
-    \if@withhyper
-      \IfNoValueTF {#3}
-        {\printinfo{\csuse{#1 symbol}}{##1}}%
-        {\printinfo{\csuse{#1 symbol}}{##1}[\csuse{#1 hyperprefix}##1]}%
-    \else
-      \printinfo{\csuse{#1 symbol}}{##1}%
-    \fi%
+%% v1.6: Add starred mode to create \printinfo with full URL
+\NewDocumentCommand{\NewInfoField}{s m m o}{%
+  \IfBooleanF{#1}{
+    \IfNoValueF{#4}{\csdef{#2 hyperprefix}{#4}}%
   }
+  \csdef{#2 symbol}{#3}%
+  \IfBooleanTF{#1}
+    { \csdef{#2}##1##2{%
+        \if@withhyper
+          \IfNoValueTF {##2}
+            {\printinfo{\csuse{#2 symbol}}{##1}}%
+            {\printinfo{\csuse{#2 symbol}}{##1}[##2]}%
+        \else
+          \printinfo{\csuse{#2 symbol}}{##1}%
+        \fi%
+      }%
+    }
+    { \csdef{#2}##1{%
+        \if@withhyper
+          \IfNoValueTF {#4}
+            {\printinfo{\csuse{#2 symbol}}{##1}}%
+            {\printinfo{\csuse{#2 symbol}}{##1}[\csuse{#2 hyperprefix}##1]}%
+        \else
+          \printinfo{\csuse{#2 symbol}}{##1}%
+        \fi%
+      }%
+    }
 }
 \ExplSyntaxOff
 
@@ -214,8 +200,8 @@
 \NewInfoField{twitter}{\faTwitter}[https://twitter.com/]
 \NewInfoField{linkedin}{\faLinkedinIn}[https://linkedin.com/in/]
 \NewInfoField{github}{\faGithub}[https://github.com/]
-\NewInfoField{orcid}{\aiOrcid}[https://orcid.org/]
-\NewInfoField{location}{\faMapMarker*}
+\NewInfoField{orcid}{\faOrcid}[https://orcid.org/]
+\NewInfoField{location}{\faMapMarker}
 
 % v1.2: Support for multiple photos
 \newlength{\altacv@photos@width}
@@ -325,11 +311,15 @@
 }
 
 \newcommand{\cvskill}[2]{%
-\textcolor{emphasis}{\textbf{#1}}\hfill
-\foreach \x in {1,...,5}{%
-  \space{\ifnumgreater{\x}{#2}{\color{body!30}}{\color{accent}}\ratingmarker}}\par%
+  \textcolor{emphasis}{\textbf{#1}}\hfill
+  \BeginAccSupp{method=plain,ActualText={#2}}
+  \foreach \x in {1,...,5}{%
+    \ifdimequal{\x pt - #2 pt}{0.5pt}%
+    {\clipbox*{0pt -0.25ex {.5\width} {\totalheight}}{\color{accent}\ratingmarker}%
+     \clipbox*{{.5\width} -0.25ex {\width} {\totalheight}}{\color{body!30}\ratingmarker}}
+    {\ifdimgreater{\x bp}{#2 bp}{\color{body!30}}{\color{accent}}\ratingmarker}%
+  }\EndAccSupp{}\par%
 }
-
 % Adapted from @Jake's answer at http://tex.stackexchange.com/a/82729/226
 \newcommand{\wheelchart}[4][0]{%
     \begingroup\centering
@@ -396,16 +386,6 @@
 }
 
 \newenvironment{cvcolumn}[1]{\begin{minipage}[t]{#1}\raggedright}{\end{minipage}}
-
-\RequirePackage[backend=biber,style=authoryear,sorting=ydnt]{biblatex}
-%% For removing numbering entirely when using a numeric style
-% \setlength{\bibhang}{1em}
-% \DeclareFieldFormat{labelnumberwidth}{\makebox[\bibhang][l]{\itemmarker}}
-% \setlength{\biblabelsep}{0pt}
-\defbibheading{pubtype}{\cvsubsection{#1}}
-\renewcommand{\bibsetup}{\vspace*{-\baselineskip}}
-\AtEveryBibitem{\makebox[\bibhang][l]{\itemmarker}}
-\setlength{\bibitemsep}{0.25\baselineskip}
 
 % v1.1.2: make it easier to add a sidebar aligned with top of next page
 \RequirePackage{afterpage}

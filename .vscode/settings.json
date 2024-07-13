@@ -3,7 +3,7 @@
     {
       "name": "Build resume",
       "tools": [
-        "Build"
+        "Build-win"
       ]
     },
     {
@@ -21,6 +21,10 @@
     {
       "name": "Clean",
       "command": "make clean"
+    },
+    {
+      "name": "Build-win",
+      "command": "latexmk -synctex=1 -lualatex -file-line-error -interaction=nonstopmode -halt-on-error -outdir=build resume.tex"
     }
   ]
 }

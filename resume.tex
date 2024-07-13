@@ -1,7 +1,8 @@
-\documentclass[10pt,a4paper,ragged2e,academicons]{altacv}
+\documentclass[10pt,a4paper,ragged2e,withhyper]{altacv}
 
 \geometry{left=1.25cm,right=1.25cm,top=1.5cm,bottom=1.5cm,columnsep=1.2cm}
 
+\usepackage[utf8]{inputenc}
 \usepackage{nag}
 \usepackage{paracol}
 
@@ -22,100 +23,118 @@
 \personalinfo{
   \email{mkwok1@ualberta.ca}
   \github{n30phyte}
-  \linkedin{michael-kwok-2b82a8148}
+  \linkedin{michael-kwok00}
   \phone{587 937 5980}
 }
 
-\AtBeginEnvironment{itemize}{\small}
-
-\makecvheader{}
+\makecvheader
 \columnratio{0.6}
 \begin{paracol}{2}
-  % PROJECTS
   \cvsection{Education}
-  \cvevent{BSc. Computer Engineering}{University of Alberta}{September 2017 -- May 2022}{Edmonton, AB, Canada}
+  \cvevent{BSc. Computer Engineering}{University of Alberta}{September 2017 -- April 2022}{Edmonton, AB, Canada}
 
   \cvsection{Work Experience}
-  \cvevent{Software Engineer}{Verdi Agriculture}{25 May 2021 -- 30 August 2021}{}
+  \cvevent{Software Engineer Intern}{Verdi Agriculture}{May 2021 -- August 2021}{}
   \begin{itemize}
-    \item \textbf{Technologies:} Javascript, Typescript, Jest, MongoDB
+    \item Refactored over 6000 lines of backend code from ES5 JavaScript to TypeScript.
+    \item Designed new API endpoints for backend specifically to minimize bandwidth usage and increase testability.
+    \item Implemented unit testing for backend code, from no coverage to 80\% test coverage on API endpoints.
+    \item \textbf{Technologies:} JavaScript, TypeScript, Jest, MongoDB, GraphQL
   \end{itemize}
-  
 
-  \cvevent{Contract App Developer}{AdMore Lighting Inc}{4 August 2020 -- 31 December 2020}{}
+  \cvevent{Contract App Developer}{AdMore Lighting Inc}{August 2020 -- December 2020}{}
   \begin{itemize}
     \item Developed a mobile app as an independent contractor, working closely with full time firmware developer.
     \item Improve existing app's performance and maintainability.
-    \item Polish app enough to get released on mobile app stores.
-    \item Structure app to allow for automated testing with an external hardware jig in the future.
-    \item Fixed over 400 linter warnings, closed over 40 issues.
+    \item Structure app to allow for automated testing with a hardware test device.
     \item \textbf{Technologies:} Dart, Flutter, Firebase, Protobuf, Bluetooth Low Energy
   \end{itemize}
   \divider\small
 
   \cvsection{Projects}
-  \cvproject{Rustracer}{15 Aug 2020 -- 16 Aug 2020}{\href{https://github.com/n30phyte/rustracer}{n30phyte/rustracer}}
+
+  \cvproject{Remote Vitals Monitoring System}{January 2022 -- May 2022}{\href{https://github.com/rvms-capstone/}{rvms-capstone}}
   \begin{itemize}
-    \item A simple raytracer written in Rust completed mostly within 24 hours with small optimizations over the following week.
-    \item Got to grips with using Rust for general programming, Rayon for multithreading and AMD uProf for profiling.
-    \item \textbf{Technologies:} Rust, Rayon
+    \item A wearable device for remotely monitoring a person's vitals, targeted at healthcare providers.
+    \item University of Alberta Computer Engineering capstone project.
+    \item \textbf{Technologies:} Flutter, Dart, Azure, C, Bluetooth LE, Zephyr RTOS
   \end{itemize}
   \divider\small
 
-  \cvproject{BudgetPacman (Hackathon Project)}{19 Jan 2020}{\href{https://github.com/loravocado/BudgetPacman}{loravocado/BudgetPacman}}
+  \cvproject{rlox}{Aug 2021}{\href{https://github.com/n30phyte/rlox}{n30phyte/rlox}}
   \begin{itemize}
-    \item A project for HackED 2020 with the goal of making a version of tag that used a phone and GPS locations.
-    \item Implemented a server using Socket.io and Typescript, learning both technologies overnight.
-    \item \textbf{Won:} Best Use of Google Cloud Platform APIs.
-    \item \textbf{Technologies:} React Native, Typescript, JavaScript
-  \end{itemize}
-  \divider\small
-
-  \cvproject{AI Pong (Hackathon Project)}{28 November 2018}{\href{https://github.com/n30phyte/HackEDBeta2018}{n30phyte/HackEDBeta2018}}
-  \begin{itemize}
-    \item Written during HackED Beta 2018, a hackathon hosted by the University of Alberta Computer Engineering Club.
-    \item First non-toy program in C++, using SFML to write a Pong clone to be controlled by a Python AI agent.
-    \item \textbf{Technologies:} C++, SFML, Python, Keras, TensorFlow
+    \item A JIT compiler/interpreter for lox written in Rust.
+    \item \textbf{Technologies:} Rust
   \end{itemize}
   \divider\small
 
   \switchcolumn{}
-  \cvsection{Technologies \&  \newline Programming \newline Languages}
+
+  \cvproject{Rustracer}{Aug 2020}{\href{https://github.com/n30phyte/rustracer}{n30phyte/rustracer}}
+  \begin{itemize}
+    \item A ray tracer written within 24 hours, with optimizations added over time.
+    \item \textbf{Technologies:} Rust, Rayon
+  \end{itemize}
+  \divider\small
+
+
+  \cvproject{BudgetPacman (Hackathon Project)}{Jan 2020}{\href{https://github.com/loravocado/BudgetPacman}{loravocado/BudgetPacman}}
+  \begin{itemize}
+    \item A project for HackED 2020 with the goal of making a version of tag that used a phone and GPS locations.
+    \item Implemented a server using Socket.io and TypeScript, learning both technologies overnight.
+    \item \textbf{Won:} Best Use of Google Cloud Platform APIs.
+    \item \textbf{Technologies:} React Native, TypeScript, JavaScript
+  \end{itemize}
+  \divider\small
+
+  % \cvproject{AI Pong (Hackathon Project)}{Nov 2018}{\href{https://github.com/n30phyte/HackEDBeta2018}{n30phyte/HackEDBeta2018}}
+  % \begin{itemize}
+  %   \item Written during HackED Beta 2018, a hackathon hosted by the University of Alberta Computer Engineering Club.
+  %   \item First non-toy program in C++, using SFML to write a Pong clone to be controlled by a Python AI agent.
+  %   \item \textbf{Technologies:} C++, SFML, Python, Keras, TensorFlow
+  % \end{itemize}
+  % \divider\small
+
+  \cvsection{Technologies \& \newline Programming \newline Languages}
 
   \cvsubsection{Proficient}
 
   \cvtag{Python}
   \cvtag{Git}
   \cvtag{Java}
-  \cvtag{C\#}
   \cvtag{LaTeX}
   \cvtag{CMake}
   \cvtag{Dart}
   \cvtag{C}
   \cvtag{C++}
-  \cvtag{CUDA}
+  \cvtag{TypeScript}
+  \cvtag{JavaScript}
 
   \cvsubsection{Familiar}
 
+  \cvtag{CUDA}
+  \cvtag{Java}
   \cvtag{SQL}
   \cvtag{Rust}
-  \cvtag{JavaScript}
   \cvtag{VHDL}
   \cvtag{React}
-  \cvtag{SFML}
   \cvtag{MongoDB}
   \cvtag{Firebase}
   \cvtag{Ghidra}
+  \cvtag{GraphQL}
+  \cvtag{Common Lisp}
 
   \cvsection{Extra-Curriculars}
 
-  \cvevent{VP Finance}{Indonesian Students' Association Edmonton \\ {\footnotesize PERMIKA Edmonton}}{January 2019 -- December 2020}{}
-  \begin{itemize}
-    \item Revived the group after 2 years of inactivity due to lack of manpower.
-    \item Increased our revenue by 800 dollars within a year.
-    \item This funding allowed our group to hold more events, increasing engagement from 5 to 6 people per event to more than 20.
-  \end{itemize}
-  \divider\small
+  %% Combine last 2 points, explain how we got the money
+
+  % \cvevent{VP Finance}{Indonesian Students' Association Edmonton \\ {\footnotesize PERMIKA Edmonton}}{January 2019 -- December 2020}{}
+  % \begin{itemize}
+  %   \item Revived the group after 2 years of inactivity due to lack of manpower.
+  %   \item Increased our revenue by 800 dollars within a year.
+  %   \item This funding allowed our group to hold more events, increasing engagement from 5 to 6 people per event to more than 20.
+  % \end{itemize}
+  % \divider\small
 
   \cvevent{Software Team Member}{Autonomous Robotic Vehicle Project}{May 2018 -- December 2019}{}
   \begin{itemize}
@@ -127,4 +146,3 @@
 \end{paracol}
 
 \end{document}
-
