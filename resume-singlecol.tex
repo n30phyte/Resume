@@ -1,0 +1,143 @@
+\documentclass[10pt,a4paper,ragged2e]{resume-openfont}
+
+\geometry{left=1.25cm,right=1.25cm,top=1.5cm,bottom=1.5cm,columnsep=1.2cm}
+
+\usepackage[utf8]{inputenc}
+\usepackage{nag}
+\usepackage{paracol}
+
+\setmainfont{Lato}
+
+\definecolor{Black}{HTML}{000000}
+\definecolor{SlateGrey}{HTML}{2E2E2E}
+\colorlet{heading}{Black}
+\colorlet{accent}{Black}
+\colorlet{emphasis}{SlateGrey}
+\colorlet{body}{SlateGrey}
+
+\renewcommand{\itemmarker}{\small\faAngleRight}
+\renewcommand{\ratingmarker}{\faCircle}
+
+\begin{document}
+\name{Michael Kwok}
+\personalinfo{
+  \email{mkwok1@ualberta.ca}
+  \github{n30phyte}
+  \linkedin{michael-kwok00}
+  \phone{587 937 5980}
+}
+
+\makecvheader
+\columnratio{0.6}
+\cvsection{Education}
+\cvevent{BSc. Computer Engineering}{University of Alberta}{September 2017 -- April 2022}{Edmonton, AB, Canada}
+
+\cvsection{Work Experience}
+\cvevent{Software Engineer Intern}{Verdi Agriculture}{May 2021 -- August 2021}{}
+\begin{itemize}
+  \item Refactored over 6000 lines of backend code from ES5 JavaScript to modern TypeScript.
+        %instead of "Overhauled backend code (around 7000 lines of code)" You would just say "Refactored ~(better to say >6,000 then ~7,000 imo) 7,000 lines of backend code..."
+        %
+        % \item Completely restructured backend to improve maintainability
+        % \item Improved backend performance(?):
+        % Before:
+        % Mem: Max 194.2, Avg 85.4
+        % Response times: Median 4ms Minimum 95th 59ms Maximum 95th 207ms
+        % Max Requests per min: ~100RPM
+        % After: TBD
+  \item Designed new API endpoints for backend to minimize bandwidth usage and allow for better flexibility in the future.
+  \item Implemented rigorous unit testing for backend code, from no coverage to 80\% test coverage on API endpoints.
+  \item \textbf{Technologies:} JavaScript, TypeScript, Jest, MongoDB, GraphQL
+\end{itemize}
+\divider\small
+
+\cvevent{Contract App Developer}{AdMore Lighting Inc}{August 2020 -- December 2020}{}
+\begin{itemize}
+  \item Developed a mobile app as an independent contractor, working closely with full time firmware developer.
+  \item Improve existing app's performance and maintainability.
+  \item Structure app to allow for automated testing with an external hardware jig in the future.
+  \item \textbf{Technologies:} Dart, Flutter, Firebase, Protobuf, Bluetooth Low Energy
+\end{itemize}
+
+\cvsection{Projects}
+
+\cvproject{rlox}{Aug 2021}{\href{https://github.com/n30phyte/rlox}{n30phyte/rlox}}
+\begin{itemize}
+  \item A JIT Compiler/interpreter written in Rust.
+  \item \textbf{Technologies:} Rust
+\end{itemize}
+\divider\small
+
+\cvproject{Rustracer}{Aug 2020}{\href{https://github.com/n30phyte/rustracer}{n30phyte/rustracer}}
+\begin{itemize}
+  \item A ray tracer written within 24 hours in Rust, with optimizations added over time.
+  \item \textbf{Technologies:} Rust, Rayon
+\end{itemize}
+\divider\small
+
+\cvproject{BudgetPacman (Hackathon Project)}{Jan 2020}{\href{https://github.com/loravocado/BudgetPacman}{loravocado/BudgetPacman}}
+\begin{itemize}
+  \item A project for HackED 2020 with the goal of making a version of tag that used a phone and GPS locations.
+  \item Implemented a server using Socket.io and TypeScript, learning both technologies overnight.
+  \item \textbf{Won:} Best Use of Google Cloud Platform APIs.
+  \item \textbf{Technologies:} React Native, TypeScript, JavaScript
+\end{itemize}
+\divider\small
+
+% \cvproject{AI Pong (Hackathon Project)}{Nov 2018}{\href{https://github.com/n30phyte/HackEDBeta2018}{n30phyte/HackEDBeta2018}}
+% \begin{itemize}
+%   \item Written during HackED Beta 2018, a hackathon hosted by the University of Alberta Computer Engineering Club.
+%   \item First non-toy program in C++, using SFML to write a Pong clone to be controlled by a Python AI agent.
+%   \item \textbf{Technologies:} C++, SFML, Python, Keras, TensorFlow
+% \end{itemize}
+% \divider\small
+
+\cvsection{Technologies \& Programming Languages}
+
+\cvsubsection{Proficient}
+
+\cvtag{Python}
+\cvtag{Git}
+\cvtag{LaTeX}
+\cvtag{CMake}
+\cvtag{Dart}
+\cvtag{C}
+\cvtag{C++}
+\cvtag{CUDA}
+\cvtag{TypeScript}
+\cvtag{JavaScript}
+
+\cvsubsection{Familiar}
+
+\cvtag{C\#}
+\cvtag{Java}
+\cvtag{SQL}
+\cvtag{Rust}
+\cvtag{VHDL}
+\cvtag{React}
+\cvtag{SFML}
+\cvtag{MongoDB}
+\cvtag{Firebase}
+\cvtag{Ghidra}
+
+\cvsection{Extra-Curriculars}
+
+%% Combine last 2 points, explain how we got the money
+
+% \cvevent{VP Finance}{Indonesian Students' Association Edmonton \\ {\footnotesize PERMIKA Edmonton}}{January 2019 -- December 2020}{}
+% \begin{itemize}
+%   \item Revived the group after 2 years of inactivity due to lack of manpower.
+%   \item Increased our revenue by 800 dollars within a year.
+%   \item This funding allowed our group to hold more events, increasing engagement from 5 to 6 people per event to more than 20.
+% \end{itemize}
+% \divider\small
+
+\cvevent{Software Team Member}{Autonomous Robotic Vehicle Project}{May 2018 -- December 2019}{}
+\begin{itemize}
+  \item Reduce wasted time by writing scripts that help automate repetitive tasks, interfacing with Google App APIs, GitHub’s API and simulation scripts for ROS in C++ and Python.
+  \item Improved test coverage for robot’s control systems by writing Google Test unit tests in C++.
+  \item Updated technology stack, improving build times and opening access to updated CUDA libraries, increasing performance by 5 times.
+\end{itemize}
+\divider\small
+
+\end{document}
